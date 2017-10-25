@@ -1,0 +1,28 @@
+<div class="container" style="font-family: Verdana, Geneva, sans-serif;">
+
+  <h1>Shopping Cart</h1>
+  <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @line_items.each do |line_item| %>
+                <tr>
+                    <td><%= line_item.product.name %></td>
+                    <td><%= line_item.quantity %></td>
+                    <td><%= number_to_currency(line_item.product.price) %></td><td><%= number_to_currency(line_item.line_item_total) %></td>
+                </tr>
+            <% end %>
+            <tr>
+                <td><%= link_to "Continue Shopping", root_path, class: 'btn btn-primary' %></td>
+                <td colspan="3"><%= link_to "Checkout", checkout_path, class: "pull-right btn btn-success" %></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

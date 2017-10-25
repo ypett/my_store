@@ -1,0 +1,49 @@
+<div class="container" style="font-family: Verdana, Geneva, sans-serif;">
+
+  <h2>Thanks for shopping with us!</h2>
+  <p>Let's review your order:</p>
+
+  <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_items.each do |key, value| %>
+            <tr>
+              <td><%= Product.find(key).name %></td>
+              <td><%= value %></td>
+            </tr>
+          <% end %>
+            <tr>
+              <th colspan="1"><span class="pull-right">Sub Total</span></th>
+              <td><%= number_to_currency(@order.subtotal) %></td>
+            </tr>
+            <tr>
+              <th colspan="1"><span class="pull-right">Sales Tax</span></th>
+              <td><%= number_to_currency(@order.sales_tax) %></td>
+            </tr>
+            <tr>
+              <th colspan="1"><span class="pull-right">Grand Total</span></th>
+              <td><%= number_to_currency(@order.grand_total) %></td>
+            </tr>
+  </table>
+
+  <%= form_tag order_complete_path do %>
+    <article>
+      <label class="amount">
+        <span><%= number_to_currency(@order.grand_total) %></span>
+      </label>
+    </article>
+    <div>
+      <%= hidden_field_tag :order_id, @order.id %>
+    </div>
+    <script src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Order #<%= @order.id %>"
+            data-amount="<%= (@order.grand_total.to_f.round(2) * 100) %>"></script>
+  <% end %>
+</div>

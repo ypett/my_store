@@ -1,0 +1,61 @@
+<div class="container-fluid" style="font-family: Verdana, Geneva, sans-serif; font-size: 16px;">
+    <div class="row">
+      <div style="float: center; padding-left: 20px;">
+
+        <p id="notice"><%= notice %></p>
+
+        <div style="float: left; margin-left: 30px; margin-right: 30px;">
+          <% if @product.image.url %>
+          <%#= image_tag @product.image.url %>
+          <%= image_tag @product.image.url(:medium), style: 'border: 1px solid black' %>
+          <%#= image_tag @product.image.url(:thumb) %>
+          <% end %>
+        </div>
+
+        <p>
+          <strong>Name:</strong>
+          <%= @product.name %>
+        </p>
+
+        <p>
+          <strong>Price:</strong>
+          <%= @product.price %>
+        </p>
+
+        <p>
+          <strong>Quantity:</strong>
+          <%= @product.quantity %>
+        </p>
+
+        <p>
+          <strong>Description:</strong>
+          <%= @product.description %>
+        </p>
+
+        <p>
+          <strong>Brand:</strong>
+          <%= @product.brand %>
+        </p>
+
+        <p>
+          <strong>Rating:</strong>
+          <%= @product.rating %>
+        </p>
+
+        <p>
+          <strong>Category:</strong>
+          <%= @product.category_id %>
+        </p>
+
+        <div>
+          <%= image_tag @product.image.url(:thumb) %>
+        </div>
+
+        <% if can? :update, Product %>
+          <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning' %>
+        <% end %>
+        <%= link_to 'Back', products_path, class: 'btn btn-primary' %>
+
+      </div>
+    </div>
+</div>
