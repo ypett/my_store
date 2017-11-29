@@ -49,7 +49,7 @@ gem 'cancancan'
 
 # Image uploads
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 3.0'
 
 # Other stuff
 gem 'pry-rails'
