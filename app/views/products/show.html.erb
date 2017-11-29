@@ -47,9 +47,9 @@
           <%= @product.category_id %>
         </p>
 
-        <div>
-          <%= image_tag @product.image.url(:thumb) %>
-        </div>
+<!--         <div>
+          <%#= image_tag @product.image.url(:thumb) %>
+        </div> -->
 
         <% if can? :update, Product %>
           <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning' %>
