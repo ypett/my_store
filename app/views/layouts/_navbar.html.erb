@@ -47,6 +47,8 @@
           <% if can? :create, Product %>
             <li><%= link_to "New Product", new_product_path %></li>
           <% end %>
+        <% else %>
+          <li><p class="navbar-text">Welcome to the YP Store!</p></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
